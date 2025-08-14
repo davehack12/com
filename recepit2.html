@@ -1,0 +1,168 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Transaction Details
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Custom scrollbar hidden for better mobile look */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+ </head>
+ <body class="bg-[#1c1c1c] text-white font-sans min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
+   <button aria-label="Back" class="text-white text-xl">
+    <i class="fas fa-arrow-left">
+    </i>
+   </button>
+   <h1 class="text-center text-white font-semibold text-lg flex-1">
+    Transaction Details
+   </h1>
+   <button aria-label="User Profile" class="text-[#00b37e] text-2xl">
+    <i class="fas fa-user-circle">
+    </i>
+   </button>
+  </header>
+  <main class="flex-grow px-4 py-6 space-y-6">
+   <!-- Top Card -->
+   <section class="bg-[#2a2a2a] rounded-xl p-6 relative flex flex-col items-center space-y-4">
+    <div class="absolute -top-8 bg-[#2a2a2a] rounded-full p-3">
+     <img alt="Access bank logo in orange and blue colors" class="w-12 h-12 object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAA/FBMVEX///8AaKf94yEAZKkAZ6gAZqj/5RwAYqtXiYnu3CUAY6r/5Rrg1iz/5xQAbpz54hhTjYDKyUSKqGh3nnIAaKOxuldQhowAYK0Jcph9oHBDgJFfjoTs2yX94gD//fEAX63d0zP//viftFf+7Xv+7HH/+dP+8Zf//Of+8I/++Mn//vP95j5smXT+98L96E396Vz/+97+9bels2D+8qFslXy4vlHWzzoAa6HEx0E1eZj+9LD+75P+7oT95jX962s7fJSXrWOLpG9ymHq4wUcgcZ1qk343gIuuuFidtFchepDTzzBLiYM5g4bLyESJql5hjoR0n2iWq2cAWLKJqGNM/SLRAAAQDElEQVR4nO2cCVviOhfHb5sudKOAZbVIQREVRGQpxVEBWVTUe2eu3/+7vEnaShcWYWCcuW9+zzOLxZb8e5JzTtKc/vUXgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAmF/XJRvWt++fWudf3VD9kHxqNw6qdKchKDrt+eV4lc3aZcUG9e3dS4v0R9IUvX4pvwfEVksn95XaY86VyR9d3V2fvHVzftJLhrXx9V8ngvJs+Hy+buTm/Kfq/K8FTAexykYySNZ4u7uT8//vP561Li5v/MZD/oYVY4/Jmrt2uBNV70ikSnvrxt/kCmPLlv3d5LPeIqijwbtXJTlIWI3ddCRJcXbeSXp7r71R4zKi8YNCgo+43GCWYr1KBYAhsIwAFDjl6Yp0D5TcnT15Pr3jiKVy9MrOu83Hid3hqkoL7rqHBhW5LVptiOriu9u5GloyqOvFrKYys1x3W8TOPKMx0lfAwF1HyoB0HqxkgG7qM+Ud1fHl5WvluOnWDn/Vpfyfnmq3ElMtXTQeAGRrJhmpkNoSv/Jee6qdf7bqGyEjadIRqmdW2q8oCnFbr+dNCTFfxH66vbrTVmsXJ5VA50MGm80fNZCI2+lSDwqE6OgKaHKVvnrRmWx3DquBtQpqtls9yl+A3VzU/Ja7iE5UxWfq4Iiz77ClMWjy7P6nTcooLboo8Q0ygB2c3muSBRF3uNCwJR09f6m8SujCJoI3QX8iiRA4/UAD9gt1bkiWcBTuRo0peS7fXmuDk35S1RC4135jMfBvilYidSY2WTkrTalqPUOn0wu6HrqJzeN/aqrlFtXXCDb5HSzGcuk0z9rvIBIGEXE51rHCEaR/B5NWbmGxvN3HZRtJlIZVtypug+VyJSTkhmKIvXj3ZvyqHwKu6YUzDah8Vhxt8YLiIS5LDXNjuRAvOXo+tn50a5MWSxfn9XpvN94Es42RXFrt7mBSuh6+u2SqfpMCRtUP77ewTrI0eXt1Z1/Fgu/ByYsPY3dp/GCImEUiSSswFwErYP83OS5cX1C5/0jD+bSneG0m94mpP8cMIqAXvvRFAJRJF893nbyXDmtc37jKYr81O53P5dt7gHoeqjx4Tvsr/7JM0wIWpu7nsqZ5I8K0HjZZ7bwK0beKliQ5jPtZNiUx+XNBF7XJY86RZ01H/rariL6TwJjJZX5Z2D5XY90d7pBin50RnNz48mj7LTLflnfXASKItpzbeRLCKT6p58WXJxIblTA2SazRbbJsCzL7PWewCjCZibNuPBhSo5ufc6xHh3nHfPpTzDb3HyqAJ07q0XH4y4F9mt5aEommspa80F5/BmBRceCnJ7IhLJNxiZ8yPOz2D1MjGayIM/MxwM40WeCZ3tYeeXFpwR+DUYRMTM0nWGVP/nEYGzZApV4BMbZ0PfZV2VDh9zvZHit9ibAwMIpjyUFrbTFeNH9LHg5VizwwP9Z8HeWdAH/PWZBb6g6dllvxWvb3GqTEkPXZaMyxup+SGQz+Egn6mjX2gYcF6ph0dJTXFF1zjJHEecugIgh+zGTtT7uJs6V9WzgS8GLLi9glgvcfJZ/7thmzJ+tEVip499TE9oC58JGJQ6h1D4awmbQISVuKwTdkgrP17Ovlq6PaLP9Ir/9rehZ2+jgH5ULABPcLLpdbBR/pCR4/zeKMSV4CkTSU6HuBbSBavfUy9UKb7GxlcFC9wLbYXcFs+fqZzPoEGcrBL0ROl16fE4qlmnq2WmqJiMf18RGB4cCHYJTO/BD58rSAoXhU6CLCCukWCorIIlcfeWqTsO+wmiRBecKae6Hewe8CsE47oQZeDehe9N1XVV17JUfGXaJQvt27kAhdOFDaX0/PZOWXsCnUO6BkEJGe5w3h5OFTi+XK0mGjpuehbfEVSi5OD5ej4B1CiU/ixvIah0s8W6FERtVfFMTYSfjV0grJScIzBUyTEL9EKiMolapAED3DSfJMDNqi65CIenQMXG3oqXSml7K6Uk/zd7CPgb6BrqgtMKIN7g5QmZJCjNXyOlTEFAIcrOOmwtJnSwFFVJsb6Sg8Z+0FBMmflghZ7hDQBtPZPyF5hisVhiPfi6pAgllzUi8x44CNm2dQlrqdBmfQhZ0Et8VR/5DIQ2s0r8im1QGzzqtWyanfBfnCp24zRba9qjoiWsUdtklAT/YQNvZXC8TWLxDX6MeLumkc1+K+lpM9CkUp0LTsaFkDiFGPDuEucb7w9+GzHHQUBneVfjRQtDDR/T+OoXRTyZ/hRK20dKw38B31FzWSV2FAupbkoXd6YdCMNBNw/Ec5syYzQTBnMn4R8eDPvD/LFDIYb+1K4XiIb5OdVkGfo1SbimpLTvfVsjJ37EzaQOPwu7YjIGuIQmD19KE1SBWiQcJ7xaaJBu0IZN+sO9pdO04/KRCtmdiX7Nsyn+KFHKJxaHCo7BvSe7w/1CYmo0BqOnQoWTQoGEZ6GmihneZYNZ1FALeJp2e2r6vuc6XxjXei7hUL9PFIyW/LK/BCQ3y6+sUpnDnQs1xFWoHI5iEa296ssSjTs5AX/pv27eRRs1F7FGXdXi3cJ7Fybk18ZAzhlkv7aU2oNgfWOHpEoXHuFO9rLVhjkoiI8rQiB8KB7BTAm2kcx34L4SFCidzeXAwSrGIPSK5j8iNf1JrYG3WxnnjvTJLLzWieIB7xe0ShfbMcLpeIZ/T4YWUd/FDIVVK9nP9lPGe0GP9HMLs9B7nw1A3aKUWWZSXmi88s1leKpkrFMbwb5z8rEIgDhSne7kKkypMQ3XoZ1VBx9CqLsDE7KOjcsrBIoW0keiut6H/pljLFYKXTyh8/YRC0EcRg2tS4MOGnUgkEjOaqcgQTYSEmjlKRd7jZty98SPjw4ac52+UAI3ZtQq9I1pZYUPwin/7fuU4jK31NHD+CYbof0KK/xiHzbTIa28PBT6B2zqIP/2LHpiCpj3a4hlz4ijUHQRnXq4ku6ujBQzBugfBSi9rIZxlr7Qhnlmotc8oZHvI0UudtKswO4IOVHs74Meyc79R8scwbu58OJ6lbF8qp1wmJXvSqr7wq32pGUl5yS3PUteMwxsc8QdLz/copPg2vruHUSceRmZjlgGPTT5qOgqlZwCDBqvh/mz0YMB04iEjAhux8Io8FjRiel1e6p5iszz+r/GlZaxw1F12Aa9CVjOxEZ8dhb3ZKw/S2TcqPXFGm5rBcaOAFQs5aORQXsqITXtywewop6HYAbrg0nh4cYcF9FfnpbZCSmxjJQnaacKjYcXjBh2Puyt7NPwZgWXRppwN56UUaOMr6tHubhQyXbyOkl+6+n1vD0R+yfk+hXaCxOmOQvFF7TSbTf0N/mVPYcxBE4M9RfNN7ofnFhSY4CsKmR0ptH08TS+dIN7gRNjil1zPp9AJPbSjkKWsAWALnSZg+SSewjwVWIQY52CMZuEHIKxQHOLT9fGOFPI13ML6MoHuKkZsSUT0K6RsJW4vFV/0Q16cQIfDZ7H7eLIn0oWSAnPdA3m8QCGIxjn70G7GIQNMfHNbSxUWcUSUrCWLBgGFIKVzc4UMVTK7/NisFXg8uGjbhoC3FOVxitZ6XYUg7U4uutjR0ErH9aXDf9MeCiLvzi3S/GdmF+KrvRS14lniud3g5uKFgoBCihl4FMJP451+ZmDkMg8CzZXiyXEP0aaNJ5jrUO5aG6cfOGRLst0J1JgTDznzqeSllnbmFtkDP21tUQPZKPYz3PGqR1DY13Dqw8KhGFTojmt3vbQ/0w1dkQ3oaSSUoiIMQYJ/8HOA0Gqis5woWW5OQzub+V1KhcWricpsUURj+KzdE1auepfv7KE/WRRVgwopPqF4FFJgagqJmpCMvQnfJ4YVa7cn7dko9ih1MuiMJSvCMMkBnjUuD3OFwVMWKYSeAF9fulolEM7z8X3lhIMFT0VDCtnxjPMopMTMaPbwPutn9X4arbXx6aw1HcoDzXa+CxVK+otI7UAhFGj3qFWjEHF0ZWfKQkILDWf0/MSnkAJZnFlKb46zA9GhbOpGR5/yVqnAUwm9FJ+1KftmQYX+6hn0kEUxD4F75YUKFxXcSGGFbDpmC1y1HmzjPH3ilFlEC3RVNqoLEM+zLTi20RFh5LpzJp0ZoO0gZsRM9mumIrxlKXdMg4gseNB12Ygna/gpnnPlAOqgEFMXHBfguA5s/Rcz7/ZUVLpf/6T7vOose+rJVzbt3ZXHaBFEynN5po8P5ebrcyzIPDRNHc6EZ7L14zA67wnsOOIjleuPKftj58pB+mC88Hgk5XtGyvLg1ZmHStXP7KxpVN3ZgWr+/ZKh5rk8E07t2YWHqGjvuZ/pBracsiDAfDMDE/zI/jx8isP8FsPvHscsp5NL9c9tqylf5d2Roqizx4dnatPdGGg7CNjzZgx7QzHbmzRNZyr9SQsijm7nywacpOpWItdlt9+/vRfQjo/u9PtIVt21II4+3mDz1/m9Z6ezvStq0qd+k11R9u7aXLs08+yLkuj7Nc+3g2a8vsqHdrYdZMT0fjYEb6SOTzOB4gwpL11dbl6YgTYGB2thZoPDHvWF2/dYke3mHkayt0xToqsnrS1LMo7OW1d0oO5AMB8PeuxPlx1sow7wfDT24y1gvPq3y58qxihWro/roYLCeGKr/WDbgzZ4dXMHuGvOdxXinaW72O6N6grv/IMSlf889LYq/9lCHuCpXnvg2aQHm5Cn62fXO9yzf9RohXbro32Zz5q4X1OiVKA7zfo2WuKSr9M9lHxV0Kb9YCXXbDDZn+vBhXsPvqCAHEv99mZvtV6V8mmolFIwkzUYRXbtemDXLGjTYWCXbD5fPdt76aVdDkv7TWkmIuMdmhImUNCvJGXJb7zq8RZb1reicXlW5/xFJqh47SGziyjCoB2jhz8s2VvbaBev/SJ5NheNU1Rr4q/w0C28JXx7U+Kg0D/ooDIgj2NBpSNf8nKJxs1tnQu6HnMwyWwXRXD9zwQFBe/EHjmWXUaFDSlWzgMi7QS2tmnWA70mTz1nO7LgMx6Ud1b++pcQNNC7dUKu5/0w81nXA2NeF84UDF9J5Z7K8Lak2Lg88b/ow05g2xlxnSnRTEGbJgIV+Sgq3P5curl7iuenoTI3SbC+r0hgGRwUHjoyJ/mNt1Uh06/gonyzoAQ63pygKBLahQ94AIPCSPe95ISDcwXoWH4v4/koVi4DUxE7ga2h12N4V7RYLYfKfL1eikOvxDgr76w2dH8Uz9H7afwiFcEaTPpRhhdFkYfJ5iRYmQWlQseyYQHaF3LRuLkPTJ2hXWUzmYi9xA4Gb4YvV3Acy9dHhQ0pXoaKv1GVJsI/oUaLEH+O8fygAv5Aoa0f7neMCpsSWgXxGg+mm3+2Ogd7FSRQ1yqhEuX/hDybi8o1rnt3Hv1W709398aA34jK+c3pt2+nresvfKsOgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEwv8D/wOxffXhUEtMxgAAAABJRU5ErkJggg=="/>
+    </div>
+    <p class="text-center text-white text-sm font-normal pt-6 max-w-xs">
+     Transfer from ORICHA RACHEAL OMAYO
+    </p>
+    <p class="text-white font-extrabold text-3xl pt-1">
+     ₦150,000.00
+    </p>
+    <div class="flex items-center space-x-2 text-[#00b37e] font-medium text-base">
+     <span class="w-6 h-6 rounded-full bg-[#00b37e] flex items-center justify-center">
+      <i class="fas fa-check text-black text-sm">
+      </i>
+     </span>
+     <span>
+      Successful
+     </span>
+    </div>
+   </section>
+   <!-- Transaction Details Card -->
+   <section class="bg-[#2a2a2a] rounded-xl p-5 space-y-4">
+    <h2 class="text-white font-semibold text-base mb-2">
+     Transaction Details
+    </h2>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Credited to
+     </span>
+     <button class="text-white font-normal flex items-center space-x-1">
+      <span>
+       Available Balance
+      </span>
+      <i class="fas fa-chevron-right text-gray-400">
+      </i>
+     </button>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Sender Details
+     </span>
+     <p class="text-white font-normal text-right max-w-[60%] leading-tight">
+      ORICHA RACHEAL OMAYO
+      <br/>
+      Access Bank | 002****892
+     </p>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Remark
+     </span>
+     <p class="text-white font-normal text-right max-w-[60%] leading-tight">
+      TRFMummyFRM ORICHA RACHEAL OMAYO TO KINGDAVID AYOMIDE ODUFUWA
+     </p>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Transaction Type
+     </span>
+     <p class="text-white font-normal">
+      Bank Deposit
+     </p>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Transaction No.
+     </span>
+     <p class="text-white font-normal flex items-center space-x-2">
+      <span>
+       250814060100438912565943
+      </span>
+      <button aria-label="Copy Transaction Number" class="text-gray-400 hover:text-white">
+       <i class="far fa-copy">
+       </i>
+      </button>
+     </p>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm mb-1">
+     <span>
+      Transaction Date
+     </span>
+     <p class="text-white font-normal">
+      Aug 14th, 2025 11:11:16
+     </p>
+    </div>
+    <div class="flex justify-between text-gray-400 text-sm">
+     <span>
+      Session ID
+     </span>
+     <p class="text-white font-mono font-normal flex items-center space-x-2 max-w-[60%] truncate">
+      <span>
+       000014250814111115271860255973
+      </span>
+      <button aria-label="Copy Session ID" class="text-gray-400 hover:text-white">
+       <i class="far fa-copy">
+       </i>
+      </button>
+     </p>
+    </div>
+   </section>
+   <!-- More Actions Card -->
+   <section class="bg-[#2a2a2a] rounded-xl p-5 space-y-4">
+    <h2 class="text-white font-semibold text-base mb-2">
+     More Actions
+    </h2>
+    <div class="flex justify-between text-gray-400 text-sm mb-3 border-b border-gray-700 pb-3">
+     <span>
+      Category
+     </span>
+     <button class="text-white font-normal flex items-center space-x-1">
+      <span>
+       Deposit
+      </span>
+      <i class="fas fa-chevron-right text-gray-400">
+      </i>
+     </button>
+    </div>
+    <button class="flex items-center space-x-2 text-[#00b37e] font-normal text-sm">
+     <i class="fas fa-sync-alt">
+     </i>
+     <span>
+      Transfer Back
+     </span>
+    </button>
+   </section>
+  </main>
+  <!-- Share Receipt Button -->
+  <footer class="p-6">
+   <button class="w-full bg-[#00b37e] text-black font-semibold text-lg py-4 rounded-full hover:bg-[#00a66f] transition-colors" type="button">
+    Share Receipt
+   </button>
+  </footer>
+ </body>
+</html>
