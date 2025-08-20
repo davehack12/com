@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Cash App Refund</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    [contenteditable="true"]:focus {
+      outline: none;
+      background: rgba(0,194,68,0.15);
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between px-4 py-3">
+    <button aria-label="Close" class="text-3xl font-extrabold text-white leading-none">×</button>
+    <div></div>
+    <button aria-label="More options" class="text-3xl font-extrabold text-white leading-none">⋮</button>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow flex flex-col items-center px-6">
+
+    <!-- Logo / Profile -->
+    <img 
+      src="https://placehold.co/80x80/000000/FFFFFF/png?text=$" 
+      alt="Cash App Logo" 
+      class="w-20 h-20 rounded-full border border-gray-800"
+    />
+
+    <!-- Sender -->
+    <h1 id="sender" contenteditable="true" class="mt-4 font-semibold text-white text-lg text-center">
+      Cash App Team
+    </h1>
+    <p id="paymentFrom" contenteditable="true" class="mt-1 text-gray-400 text-center text-sm">
+      Payment from Cash App Team
+    </p>
+
+    <!-- Amount + Reason -->
+    <div class="mt-16 text-center">
+      <p id="amount" contenteditable="true" class="text-4xl font-extrabold text-white">
+        $39.00
+      </p>
+      <p id="reason" contenteditable="true" class="mt-2 text-gray-400 text-base max-w-xs mx-auto">
+        Refund for prior chargeback(s)<br/>
+        Today at 3:54 PM
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-auto w-full max-w-md space-y-4 pb-10">
+      <button 
+        type="button"
+        class="w-full bg-[#00C244] hover:bg-[#00a738] text-white font-semibold rounded-full py-3 flex items-center justify-center gap-2"
+      >
+        <i class="far fa-heart"></i>
+        Reply
+      </button>
+      <button 
+        type="button"
+        class="w-full border border-gray-700 text-white font-semibold rounded-full py-3"
+      >
+        Web Receipt
+      </button>
+    </div>
+  </main>
+</body>
+</html>

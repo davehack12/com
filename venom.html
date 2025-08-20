@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Venmo Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    [contenteditable="true"] {
+      outline: none;
+      border-bottom: 1px dashed rgba(0,0,0,0.3);
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start pt-6 px-6">
+
+  <!-- Top bar -->
+  <div class="w-full max-w-sm flex justify-between items-center mb-6">
+    <button class="text-gray-700 text-2xl leading-none">
+      <i class="fas fa-times"></i>
+    </button>
+    <h1 class="text-lg font-semibold text-gray-900">Venmo</h1>
+    <button class="text-gray-700 text-2xl leading-none">
+      <i class="fas fa-ellipsis-h"></i>
+    </button>
+  </div>
+
+  <!-- Profile -->
+  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="w-20 h-20 rounded-full mb-3 object-cover" />
+  <h2 class="text-gray-900 font-semibold text-lg" contenteditable="true">John Carter</h2>
+  <p class="text-gray-500 text-sm" contenteditable="true">@JohnCarter</p>
+
+  <!-- Payment amount -->
+  <div class="text-center mt-8">
+    <p class="text-5xl font-bold text-gray-900" contenteditable="true">$75.00</p>
+    <p class="text-gray-600 text-base mt-2" contenteditable="true">Dinner 🍝</p>
+  </div>
+
+  <!-- Date/time -->
+  <div class="text-center mt-2">
+    <p class="text-gray-400 text-xs" contenteditable="true">Today at 8:41 PM</p>
+  </div>
+
+  <!-- Buttons -->
+  <div class="mt-10 w-full max-w-sm space-y-3">
+    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg py-3">Like</button>
+    <button class="w-full border border-gray-300 text-gray-900 font-semibold rounded-lg py-3">Comment</button>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="w-full max-w-sm h-1.5 bg-black rounded-full mt-20 mb-2"></div>
+</body>
+</html>

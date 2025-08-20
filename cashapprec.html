@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Payment Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    /* iOS style font stack */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    /* Editable highlight */
+    [contenteditable="true"]:focus {
+      outline: none;
+      background: rgba(16,185,129,0.1);
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start pt-6 px-6">
+  
+  <!-- Top bar with time and signal -->
+  <div class="w-full max-w-xs flex justify-between text-black text-xs font-semibold mb-6 select-none">
+    <div id="topTime" contenteditable="true">
+      1:06
+    </div>
+    <div class="flex items-center space-x-1">
+      <span class="font-normal">LTE</span>
+      <svg aria-hidden="true" class="w-5 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect fill="none" height="10" rx="2" ry="2" stroke="currentColor" stroke-width="2" width="18" x="3" y="7"></rect>
+        <rect fill="currentColor" height="6" rx="1" ry="1" width="14" x="5" y="9"></rect>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Close and menu icons top row -->
+  <div class="w-full max-w-xs flex justify-between items-center mb-6">
+    <button aria-label="Close" class="text-gray-700 text-2xl leading-none">
+      <i class="fas fa-times"></i>
+    </button>
+    <button aria-label="More options" class="text-gray-700 text-2xl leading-none">
+      <i class="fas fa-ellipsis-h"></i>
+    </button>
+  </div>
+
+  <!-- Profile image -->
+  <img alt="Profile photo" class="w-18 h-18 rounded-full mb-3 object-cover" height="72" src="https://placehold.co/72x72" width="72"/>
+
+  <!-- Name and subtitle -->
+  <div class="text-center mb-10">
+    <h1 id="name" contenteditable="true" class="text-gray-900 font-semibold text-lg leading-tight">
+      Raymond Conroy
+    </h1>
+    <p id="username" contenteditable="true" class="text-gray-400 text-sm leading-tight mt-1">
+      Payment from $RaymondConroy
+    </p>
+  </div>
+
+  <!-- Amount -->
+  <div class="text-center mb-1">
+    <p id="amount" contenteditable="true" class="text-gray-900 font-normal text-5xl leading-none">
+      $150.00
+    </p>
+  </div>
+
+  <!-- Date/time -->
+  <div class="text-center mb-20">
+    <p id="time" contenteditable="true" class="text-gray-400 text-xs leading-tight">
+      Today at 1:05 PM
+    </p>
+  </div>
+
+  <!-- Reply button -->
+  <button class="flex items-center justify-center space-x-2 border border-gray-300 rounded-lg w-full max-w-xs py-3 text-green-600 font-semibold text-base leading-tight hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400" type="button">
+    <i class="far fa-heart"></i>
+    <span>Reply</span>
+  </button>
+
+  <!-- Bottom black bar -->
+  <div class="w-full max-w-xs h-1.5 bg-black rounded-full mt-20 mb-2"></div>
+</body>
+</html>

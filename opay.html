@@ -1,0 +1,291 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Transaction Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    /* Custom scrollbar hidden for better mobile look */
+    ::-webkit-scrollbar { display: none; }
+
+    /* Print helpers */
+    .no-print { display: block; }
+    .only-print { display: none; }
+    @media print {
+      .no-print { display: none !important; }
+      .only-print { display: block !important; }
+    }
+
+    /* Watermark (visible on screen and print to avoid misuse) */
+    .watermark::before{
+      content: "Transaction Receipt";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+      opacity: 0.08;
+      font-size: 48px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body class="bg-[#1c1c1c] text-white font-sans min-h-screen flex flex-col watermark">
+  <!-- Header -->
+  <header class="flex items-center justify-between px-4 py-3 border-b border-gray-700 relative z-10">
+    <button aria-label="Back" class="text-white text-xl">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <h1 class="text-center text-white font-semibold text-lg flex-1">
+      Transaction Details
+    </h1>
+
+    <div class="flex items-center gap-3">
+      <button id="toggleEditor" class="no-print bg-[#2a2a2a] px-3 py-1 rounded-lg text-sm border border-gray-700 hover:bg-[#3a3a3a]">
+        Edit
+      </button>
+      <button aria-label="User Profile" class="text-[#00b37e] text-2xl">
+        <i class="fas fa-user-circle"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Inline Editor (collapsible) -->
+  <section id="editorPanel" class="no-print hidden bg-[#2a2a2a] border-b border-gray-700 px-4 py-4 z-10">
+    <h2 class="text-white font-semibold text-base mb-3">Edit transaction fields</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <label class="block">
+        <span class="text-gray-300 text-sm">Transfer From (name)</span>
+        <input id="inpTransferFrom" type="text" class="w-full p-2 rounded bg-gray-800 text-white mt-1" placeholder="e.g., ORICHA RACHEAL OMAYO">
+      </label>
+
+      <label class="block">
+        <span class="text-gray-300 text-sm">Sender Name</span>
+        <input id="inpSenderName" type="text" class="w-full p-2 rounded bg-gray-800 text-white mt-1" placeholder="e.g., ORICHA RACHEAL OMAYO">
+      </label>
+
+      <label class="block">
+        <span class="text-gray-300 text-sm">Sender Bank | Account</span>
+        <input id="inpSenderBankAcct" type="text" class="w-full p-2 rounded bg-gray-800 text-white mt-1" placeholder="e.g., Access Bank | 002****892">
+      </label>
+
+      <label class="block md:col-span-2">
+        <span class="text-gray-300 text-sm">Remark</span>
+        <textarea id="inpRemark" rows="2" class="w-full p-2 rounded bg-gray-800 text-white mt-1" placeholder="Transfer remark..."></textarea>
+      </label>
+
+      <label class="block">
+        <span class="text-gray-300 text-sm">Transaction Date/Time</span>
+        <input id="inpTxnDate" type="datetime-local" class="w-full p-2 rounded bg-gray-800 text-white mt-1">
+      </label>
+
+      <div class="flex items-end gap-2 md:col-span-2">
+        <button id="btnSave" class="bg-[#00b37e] text-black font-semibold px-4 py-2 rounded-lg hover:bg-[#00a66f]">Save</button>
+        <button id="btnFillNow" class="bg-[#3a3a3a] text-white font-medium px-4 py-2 rounded-lg hover:bg-[#4a4a4a]">Use current values</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-grow px-4 py-6 space-y-6 relative z-0">
+    <!-- Top Card -->
+    <section class="bg-[#2a2a2a] rounded-xl p-6 relative flex flex-col items-center space-y-4">
+      <div class="absolute -top-8 bg-[#2a2a2a] rounded-full p-3">
+        <img alt="Demo logo" class="w-12 h-12 object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAvVBMVEX///8dz5+kxbsXqYIWpn8Wo3wVn3kXrYQVnHcYsIcYs4kZtowTlXEUmHUawJMbw5YSjmwq0qXY3dvc9/D4+fk51atm0LOe69Yl0aLq+vb5/vzK9OjA8eSS6NGy797z9PR648WE5ctP2bRG17Dt+fZf3rvh6ujV7eaa6tS179/h8e1s38A3uJU0poe+5NpKrJGQyrus3c+W1cRKv5/T9ex+0ruj1Mae3MxEx6N/2cBs1bjX5+LK4NqDz7m83NPA0q1oAAAE1klEQVR4nO2ca1faShSGmXqwIhWaQ5AQCIRwkVs9x3O0Vm39/z+rQW0LzjvJCMY9uN7nW1eZtfaTueyZPYmlEiGEEEIIIYQQQgghhBBCCCGEEEIIIYSQfac/Oev2WtMoilq9WWc+8aUD2oZ+o7doeoH6g+cN4+58v2T8RtRUkGDY2h+XsDcMNIN6rVo5KJcPKtVa0g2lQ7QhnOmdUa8cfl7jaDlzXqUPNKpHnzW+nLs9wBqJpnF8omus+GcuHawZf6rNjdrhJxMn/7raKW29Oz6eZOFop3Q8bY6Xj7L5ciYdNKClD6vyYS4X0mE/x4+0YVUr2/CfdOTPGOgef9nhlAlYruoHtlxLR79GT+uPeuXjE5X/U37/C+HOPLnUt1bHlRXLq7PR6ge+P7q/WlZMNKQFnhhp666qHacsv/bXfza5WB5jliOp0Dfwx/rAqqZca4nbv65iTp3I8foEUbVq9Vsb/Xb+DZvM3jpoQFsfWPVa7cbwjP3bGsSBwaUPLJV6mH9/A0Vu3y5gAx1wGKxneJRKt3XE5VsFbMDXd7yqnmQ2CRMkkgjP947uoZo5A77tudclqENUN6/VDDRSY9EuaegzRC1yW4HMo1Qgmt8HekAeTCCbNFCXRMWHa6Sv5xCVuWL9IgYiXj+/XVGcg3iszuFtMCSV4LkXPNixXUs0SwbFBpuBDwq8HbumXSAyFFu37vQB0rSshYZgbAVi1aELPZjYti0aW2JHRb1yoqz34ygptooMNgvwVK1HB0ol+am0GHyQRazPFahxU2i2h+Ch2ie1od5YKiXe6aEE9q0XoLWQyHcwOOxbX4H+nBQXbBYf9Eiyj1QbvBuRHxR5dYDI0L61QyLvZrIDEWXf+kZvLLX83gMR+xcBwP5GKiEiEfvSJzjLSB1IwGS3P66GYK8ldUREItb3aJegsdQ2HolYP9QWaCxVbEQiQ9vZDkqUgdDqC0U8y9k+Qg9BqviARPILv4+Aay4VFxlsFlDEcpOCit9i9XgoYrcAo+K3XMkUi1hVEFCHyBUasYjN9QBKIkruWgGLWNRC+qDwoATv3gwi+Ql6ilpZLndFYBLJG1xwYMlVsM0iOZXsCXxJ27KKXwhGEZVkmIzQBLG9VikGs4gaG01GaOUVvFFYkSGihoYr0TZ++V+sDv9Alojy4CrUBccp9YI9czFkiqQpXuuUNrrdWUkLv8icI6K8eH0d9hsxuspdIZhCHsgTSWlGnXaY0u6YvoxJmQp72Ig8dExK1v/LbRZfKJJDLK3xSiKxtEXpdUTkx1XpNUQC2UT4i51FmvfSCo/sKrJw4B3ZB3YTabrzbj8SCcam9P3sdwOHvkSElcb+fJCv4g2c+kwMivydHjmizEyumlNXJscTJpFSKTyPTS7eqfQ71zpmkZTwMkq8zUEWeEnUcGhq/CZTZEW66b1uxeMkScZxq9cZuSixIlfkEX+FQHj2WIq4D0VcgyKu8b5FpK6YdwGKuJr0skAiUq/u7gQSecG7gO6ARCS/L9oaJPJdOqhtACJ7OUWQSE86pq3QRYaCH67tgCYi+03k9jwXCfZzYGkijhRyt2BTxHPhzx1sx7pIMLb4RNdV/oh4C/eKVS/gLj5NiQets33cuxNCCCGEEEIIIYQQQgghhBBCCCGEEELIG/MTYVVivWYiWF0AAAAASUVORK5CYII="/>
+      </div>
+      <p id="transferFromText" class="text-center text-white text-sm font-normal pt-6 max-w-xs">
+        Transfer from ORICHA RACHEAL OMAYO
+      </p>
+      <p class="text-white font-extrabold text-3xl pt-1">₦150,000.00</p>
+      <div class="flex items-center space-x-2 text-[#00b37e] font-medium text-base">
+        <span class="w-6 h-6 rounded-full bg-[#00b37e] flex items-center justify-center">
+          <i class="fas fa-check text-black text-sm"></i>
+        </span>
+        <span>Successful</span>
+      </div>
+    </section>
+
+    <!-- Transaction Details Card -->
+    <section class="bg-[#2a2a2a] rounded-xl p-5 space-y-4">
+      <h2 class="text-white font-semibold text-base mb-2">Transaction Details</h2>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Credited to</span>
+        <button class="text-white font-normal flex items-center space-x-1">
+          <span>Available Balance</span>
+          <i class="fas fa-chevron-right text-gray-400"></i>
+        </button>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Sender Details</span>
+        <p id="senderDetailsText" class="text-white font-normal text-right max-w-[60%] leading-tight">
+          ORICHA RACHEAL OMAYO<br/>
+          Access Bank | 002****892
+        </p>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Remark</span>
+        <p id="remarkText" class="text-white font-normal text-right max-w-[60%] leading-tight">
+          TRFMummyFRM ORICHA RACHEAL OMAYO TO KINGDAVID AYOMIDE ODUFUWA
+        </p>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Transaction Type</span>
+        <p class="text-white font-normal">Bank Deposit</p>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Transaction No.</span>
+        <p class="text-white font-normal flex items-center space-x-2">
+          <span id="txnNoText">250814060100438912565943</span>
+          <button aria-label="Copy Transaction Number" class="text-gray-400 hover:text-white" data-copy="#txnNoText">
+            <i class="far fa-copy"></i>
+          </button>
+        </p>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm mb-1">
+        <span>Transaction Date</span>
+        <p id="txnDateText" class="text-white font-normal">
+          Aug 14th, 2025 11:11:16
+        </p>
+      </div>
+
+      <div class="flex justify-between text-gray-400 text-sm">
+        <span>Session ID</span>
+        <p class="text-white font-mono font-normal flex items-center space-x-2 max-w-[60%] truncate">
+          <span id="sessionIdText">000014250814111115271860255973</span>
+          <button aria-label="Copy Session ID" class="text-gray-400 hover:text-white" data-copy="#sessionIdText">
+            <i class="far fa-copy"></i>
+          </button>
+        </p>
+      </div>
+    </section>
+
+    <!-- More Actions Card -->
+    <section class="bg-[#2a2a2a] rounded-xl p-5 space-y-4">
+      <h2 class="text-white font-semibold text-base mb-2">More Actions</h2>
+      <div class="flex justify-between text-gray-400 text-sm mb-3 border-b border-gray-700 pb-3">
+        <span>Category</span>
+        <button class="text-white font-normal flex items-center space-x-1">
+          <span>Deposit</span>
+          <i class="fas fa-chevron-right text-gray-400"></i>
+        </button>
+      </div>
+      <button class="flex items-center space-x-2 text-[#00b37e] font-normal text-sm">
+        <i class="fas fa-sync-alt"></i>
+        <span>Transfer Back</span>
+      </button>
+    </section>
+  </main>
+
+  <!-- Share Receipt Button -->
+  <footer class="p-6">
+    <button id="btnPrint" class="w-full bg-[#00b37e] text-black font-semibold text-lg py-4 rounded-full hover:bg-[#00a66f] transition-colors" type="button">
+      Share Receipt
+    </button>
+  </footer>
+
+  <script>
+    // Helpers
+    const $ = (sel) => document.querySelector(sel);
+
+    const toOrdinal = (n) => {
+      const s = ["th","st","nd","rd"], v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    };
+    const formatNice = (dateStr) => {
+      const d = new Date(dateStr);
+      if (isNaN(d)) return '';
+      const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const mm = months[d.getMonth()];
+      const dd = toOrdinal(d.getDate());
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2,"0");
+      const min = String(d.getMinutes()).padStart(2,"0");
+      const ss = String(d.getSeconds()).padStart(2,"0");
+      return `${mm} ${dd}, ${yyyy} ${hh}:${min}:${ss}`;
+    };
+
+    // Toggle editor
+    $("#toggleEditor").addEventListener("click", () => {
+      $("#editorPanel").classList.toggle("hidden");
+    });
+
+    // Copy handlers
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-copy]");
+      if (!btn) return;
+      const target = $(btn.getAttribute("data-copy"));
+      if (!target) return;
+      navigator.clipboard.writeText(target.textContent.trim()).then(() => {
+        btn.classList.add("text-[#00b37e]");
+        setTimeout(() => btn.classList.remove("text-[#00b37e]"), 800);
+      });
+    });
+
+    // Prefill "Use current values"
+    const fillEditorFromView = () => {
+      // Transfer From
+      const tf = $("#transferFromText").textContent.replace(/^Transfer from\s*/i, "").trim();
+      $("#inpTransferFrom").value = tf;
+
+      // Sender Details split into two lines
+      const senderHtml = $("#senderDetailsText").innerHTML.trim().split("<br>");
+      const senderName = senderHtml[0]?.replace(/<[^>]*>/g,"").trim() || "";
+      const bankAcct = senderHtml[1]?.replace(/<[^>]*>/g,"").trim() || "";
+      $("#inpSenderName").value = senderName;
+      $("#inpSenderBankAcct").value = bankAcct;
+
+      // Remark
+      $("#inpRemark").value = $("#remarkText").textContent.trim();
+
+      // Try to parse current date into datetime-local
+      const cur = $("#txnDateText").textContent.trim();
+      // No perfect round-trip for ordinals; leave empty if parsing fails
+      $("#inpTxnDate").value = "";
+    };
+    $("#btnFillNow").addEventListener("click", fillEditorFromView);
+
+    // Save -> updates the visible receipt
+    $("#btnSave").addEventListener("click", () => {
+      const transferFrom = $("#inpTransferFrom").value.trim();
+      const senderName   = $("#inpSenderName").value.trim();
+      const bankAcct     = $("#inpSenderBankAcct").value.trim();
+      const remark       = $("#inpRemark").value.trim();
+      const dtVal        = $("#inpTxnDate").value; // ISO string like 2025-08-14T11:11
+
+      if (transferFrom) {
+        $("#transferFromText").textContent = `Transfer from ${transferFrom}`;
+      }
+      if (senderName || bankAcct) {
+        $("#senderDetailsText").innerHTML = `${senderName || ""}<br/>${bankAcct || ""}`;
+      }
+      if (remark) {
+        $("#remarkText").textContent = remark;
+      }
+      if (dtVal) {
+        $("#txnDateText").textContent = formatNice(dtVal);
+      }
+
+      // Collapse editor after save
+      $("#editorPanel").classList.add("hidden");
+    });
+
+    // Print
+    $("#btnPrint").addEventListener("click", () => {
+      window.print();
+    });
+
+    // Optional: initialize editor once on load with current values
+    fillEditorFromView();
+  </script>
+</body>
+</html>

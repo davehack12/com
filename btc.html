@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>BTC Payment Receipt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: #f7f9fa;
+    }
+    [contenteditable="true"]:focus {
+      outline: none;
+      background: rgba(59,130,246,0.1);
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center pt-10 px-4">
+
+  <!-- Container -->
+  <div class="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden">
+    
+    <!-- Header -->
+    <div class="bg-yellow-500 px-6 py-4 flex justify-between items-center">
+      <h1 class="text-white font-semibold text-lg">Bitcoin (BTC)</h1>
+      <i class="fab fa-btc text-white text-xl"></i>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-6 py-8 text-center">
+      <!-- Paid Amount -->
+      <p id="amount" contenteditable="true" class="text-3xl font-bold text-gray-900 mb-1">
+        0.005432 BTC
+      </p>
+      <p id="fiatValue" contenteditable="true" class="text-gray-500 mb-4">
+        ≈ $350.00 USD
+      </p>
+      <p id="status" contenteditable="true" class="text-green-600 font-medium mb-6">
+        2 Confirmations
+      </p>
+
+      <!-- Receiver -->
+      <p class="text-gray-600 text-sm">Received by</p>
+      <h2 id="receiverWallet" contenteditable="true" class="text-sm font-mono text-gray-900 break-words">
+        bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+      </h2>
+      <p id="network" contenteditable="true" class="text-gray-500 text-sm mb-8">
+        Bitcoin Mainnet
+      </p>
+
+      <!-- Date & Transaction -->
+      <div class="text-left space-y-2 border-t border-gray-200 pt-4">
+        <p class="text-gray-600 text-sm">
+          Date: <span id="date" contenteditable="true" class="text-gray-900">Aug 20, 2025 - 14:22 UTC</span>
+        </p>
+        <p class="text-gray-600 text-sm">
+          Transaction ID: <span id="txn" contenteditable="true" class="text-gray-900 break-words">
+            4b8e3f2e97a6f0c8e5a4c1f79f3c2d9e2b7c1a9d2e6b8a4f5d9c7a8b1f0d2e3c
+          </span>
+        </p>
+        <p class="text-gray-600 text-sm">
+          Sender Wallet: <span id="senderWallet" contenteditable="true" class="text-gray-900 break-words">
+            1BoatSLRHtKNngkdXEeobR76b53LETtpyT
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-50 px-6 py-4 text-center text-xs text-gray-500">
+      <p>Bitcoin Transaction Receipt • For reference only</p>
+    </div>
+  </div>
+</body>
+</html>

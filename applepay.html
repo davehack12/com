@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Apple Pay Receipt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    [contenteditable="true"] {
+      outline: none;
+      border-bottom: 1px dashed rgba(255,255,255,0.4);
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body class="bg-black min-h-screen flex flex-col items-center justify-start pt-6 px-6 text-white">
+
+  <!-- Top Bar -->
+  <div class="w-full max-w-sm flex justify-between items-center mb-8">
+    <button class="text-white text-2xl">
+      <i class="fas fa-times"></i>
+    </button>
+    <span class="text-sm font-semibold tracking-wide"> Pay</span>
+    <button class="text-white text-2xl">
+      <i class="fas fa-ellipsis-h"></i>
+    </button>
+  </div>
+
+  <!-- Card Logo -->
+  <div class="w-24 h-24 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+    <i class="fab fa-apple-pay text-4xl"></i>
+  </div>
+
+  <!-- Amount -->
+  <div class="text-center mb-2">
+    <p class="text-5xl font-bold" contenteditable="true">$250.00</p>
+  </div>
+
+  <!-- Merchant -->
+  <div class="text-center mb-1">
+    <p class="text-lg font-medium" contenteditable="true">Paid to Starbucks</p>
+  </div>
+
+  <!-- Date/Time -->
+  <div class="text-center mb-10">
+    <p class="text-gray-400 text-xs" contenteditable="true">Aug 20, 2025 • 3:12 PM</p>
+  </div>
+
+  <!-- Transaction ID -->
+  <div class="w-full max-w-sm bg-gray-900 rounded-2xl p-4 mb-6">
+    <p class="text-xs text-gray-400 mb-1">Transaction ID</p>
+    <p class="text-sm font-mono" contenteditable="true">A1B2C3D4E5F67890</p>
+  </div>
+
+  <!-- Done Button -->
+  <button class="w-full max-w-sm bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl py-3">
+    Done
+  </button>
+
+  <!-- Bottom Bar -->
+  <div class="w-full max-w-sm h-1.5 bg-white rounded-full mt-20 mb-2"></div>
+</body>
+</html>

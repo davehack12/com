@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>USDT Payment Receipt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: #f7f9fa;
+    }
+    [contenteditable="true"]:focus {
+      outline: none;
+      background: rgba(16,185,129,0.1);
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center pt-10 px-4">
+
+  <!-- Container -->
+  <div class="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden">
+    
+    <!-- Header -->
+    <div class="bg-green-600 px-6 py-4 flex justify-between items-center">
+      <h1 class="text-white font-semibold text-lg">Tether (USDT)</h1>
+      <i class="fas fa-coins text-white text-xl"></i>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-6 py-8 text-center">
+      <!-- Paid Amount -->
+      <p id="amount" contenteditable="true" class="text-4xl font-bold text-gray-900 mb-2">
+        250.00 USDT
+      </p>
+      <p id="status" contenteditable="true" class="text-green-600 font-medium mb-6">
+        Transaction Completed
+      </p>
+
+      <!-- Receiver -->
+      <p class="text-gray-600 text-sm">Received by</p>
+      <h2 id="receiverWallet" contenteditable="true" class="text-sm font-mono text-gray-900 break-words">
+        0x32bB4c7A9F21E2aC4C7D1e6D4F9b7c9bD1c5E2f3
+      </h2>
+      <p id="network" contenteditable="true" class="text-gray-500 text-sm mb-8">
+        Network: TRC20
+      </p>
+
+      <!-- Date & Transaction -->
+      <div class="text-left space-y-2 border-t border-gray-200 pt-4">
+        <p class="text-gray-600 text-sm">
+          Date: <span id="date" contenteditable="true" class="text-gray-900">Aug 20, 2025 - 13:45 UTC</span>
+        </p>
+        <p class="text-gray-600 text-sm">
+          Transaction Hash: <span id="txn" contenteditable="true" class="text-gray-900 break-words">0x91d84d0e5ff28c2a5b7a6c88d8f22d9d91f45a2f2a1b7c6e8e34b0d52f3d8a9c</span>
+        </p>
+        <p class="text-gray-600 text-sm">
+          Sender Wallet: <span id="senderWallet" contenteditable="true" class="text-gray-900 break-words">TXYZ1234abcd5678wxyz9876pqrs5432lmno</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-50 px-6 py-4 text-center text-xs text-gray-500">
+      <p>USDT (Tether) Transaction Receipt • Not a legal tender</p>
+    </div>
+  </div>
+</body>
+</html>
